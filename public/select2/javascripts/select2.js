@@ -67,8 +67,6 @@ $(document).ready(function() {
             console.log($(this).text())
             tempArr.push ($(this).text())
         })
-        // $('.tablerow').empty().trigger('change');
-
 
         data = tempArr.map(function (item, i) {
             item.id = i;
