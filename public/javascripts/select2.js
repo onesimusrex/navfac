@@ -33,24 +33,55 @@ json = [
     }
 ]
 
-
 $(document).ready(function() {
-    // AddSelect2('#'+manager-select')
-    // $('.js-example-basic-multiple').select2()
-    $('.js-example-basic-multiple').select2({
-        data: GetEmployees(json, "Manager1")
+    $('.js-example-basic-multiple').select2()  
+
+    $('#employee-select').select2({
+        placeholder: 'Select your employees',
+        closeOnSelect: false,
+        disabled: true
+    }) 
+
+    $('#manager-select').select2({
+        data: ListManagers(json),
+        placeholder: 'Select your name',
     })  
 
+    $('#manager-select').val(null).trigger('change');
 
-    // $('#employee-select').click(function(event){
-    //     event.preventDefault();
-    //     // console.log('yeah')  
-    //     var manager = $('#manager-select').find(":selected").text();
-    //     // console.log(manager)
-    //     $('#employee-select').select2({
-    //         data: GetEmployees(json, manager)
-    //     })
-    // })
+    $('#manager-select').on('select2:select', function (e) {
+        var data = e.params.data;
+        $('#employee-select').empty().trigger('change');
+        $('#employee-select').select2({
+            data: GetEmployees(json, data.text),
+            placeholder: 'Select your employees',
+            closeOnSelect: false,
+            disabled: false
+        }) 
+    });
+
+    $('#employee-select').on('select2:close', function (e) {
+        // var data = e.params.data;
+        var tempArr = []
+        $('#employee-select').find(':selected').each(function(i){
+            console.log($(this).text())
+            tempArr.push ($(this).text())
+        })
+        // $('.tablerow').empty().trigger('change');
+
+
+        data = tempArr.map(function (item, i) {
+            item.id = i;
+            _item = {id:i, text:item}
+            return _item;
+        }); 
+        $('.tablerow').select2({
+            data: GetEmployees(json, data),
+            placeholder: 'Select your employees',
+            closeOnSelect: false,
+            disabled: false
+        }) 
+    });
 });
 
 
@@ -64,8 +95,6 @@ function AddSelect2(selector){
         data: GetEmployees(json, "Manager1")
     });
 }
-
-
 
 function ListManagers(array, index){
     data = array.map(function (item, i){
