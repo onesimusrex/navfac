@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="NAVFAC Readiness Survey - Production Division Data Capture Utility">
+	<meta name="author" content="JACOBS">
+	<title>NAVFAC Readiness Survey - Production Division Data Capture Utility</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<!-- Select 2 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="css/styles.css" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/fe497c4a37.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+
+<body>
+
+	<!-- HEADER -->
+	<div class="container-fluid bg-white shadow">
+		<header class="p-3 mb-3 border-bottom">
+			<div class="container">
+				<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+					<a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+						<img src="img/Naval_Facilities_Engineering_Systems_Command_logo.png" alt="NAVFAC Logo"
+							style="height: 40px; width: auto; margin-right: 20px;">
+					</a>
+
+					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+						<li>
+							<h1 style="font-size: 16px;">PWD Readiness Survey – Production Division</h1>
+						</li>
+					</ul>
+
+					<div class="text-end">
+						<a href="#" class="d-block text-decoration-none" id="dropdownUser1">
+							<img src="img/Jacobs_jmark_rgb_black.svg" alt="Jacobs Logo" width="32" height="32">
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<!-- MAIN -->
+	<main>
+		<div class="container">
+			<div class="text-white mt-4 mb-4">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+
+			<div>
+				<section id="manager-section">
+					<header class="bg-transparent text-white border-bottom border-light-blue border-2 mb-3">
+						<h3 class="light-blue-heading">Manager Information</h3>
+					</header>
+					<div class="card" id="manager-info-card">
+						<div class="card-body mb-3">
+							<form id="manager-info-form" action="" method="post" name="manager-info-form">
+								<h5>What is your Name?</h5>
+								<div class="row mb-3">
+									<div class="col-sm">
+										<input class="form-control form-control-lg" type="text" placeholder="First"
+											aria-label="First Name">
+									</div>
+									<div class="col-sm">
+										<input class="form-control form-control-lg" type="text" placeholder="Last"
+											aria-label="First Name">
+									</div>
+								</div>
+								<h5>Select your PWD location from the list below:</h5>
+								<div class="mb-3">
+									<select class="form-select form-select-lg" aria-label="Select PWD location">
+										<option selected>Select a location</option>
+										<option value="PWD ANDERSEN">PWD ANDERSEN</option>
+										<option value="PWD ANNAPOLIS">PWD ANNAPOLIS</option>
+										<option value="PWD ATSUGI">PWD ATSUGI</option>
+										<option value="PWD BAHRAIN">PWD BAHRAIN</option>
+										<option value="PWD BARKING SANDS">PWD BARKING SANDS</option>
+										<option value="PWD BETHESDA">PWD BETHESDA</option>
+										<option value="PWD CFA OKINAWA">PWD CFA OKINAWA</option>
+										<option value="PWD CHINA LAKE">PWD CHINA LAKE</option>
+										<option value="PWD CHINHAE">PWD CHINHAE</option>
+										<option value="PWD CORONADO">PWD CORONADO</option>
+										<option value="PWD CORPUS CHRISTI">PWD CORPUS CHRISTI</option>
+										<option value="PWD CRANE">PWD CRANE</option>
+										<option value="PWD DAHLGREN">PWD DAHLGREN</option>
+										<option value="PWD DIEGO GARCIA">PWD DIEGO GARCIA</option>
+										<option value="PWD DJIBOUTI">PWD DJIBOUTI</option>
+										<option value="PWD EARLE">PWD EARLE</option>
+										<option value="PWD EL CENTRO">PWD EL CENTRO</option>
+										<option value="PWD EVERETT">PWD EVERETT</option>
+										<option value="PWD FALLON">PWD FALLON</option>
+										<option value="PWD FORT WORTH">PWD FORT WORTH</option>
+										<option value="PWD GREAT LAKES">PWD GREAT LAKES</option>
+										<option value="PWD GUANTANAMO BAY">PWD GUANTANAMO BAY</option>
+										<option value="PWD GULFPORT">PWD GULFPORT</option>
+										<option value="PWD INDIAN HEAD">PWD INDIAN HEAD</option>
+										<option value="PWD JACKSONVILLE">PWD JACKSONVILLE</option>
+										<option value="PWD JB MDL">PWD JB MDL</option>
+										<option value="PWD JBAB">PWD JBAB</option>
+										<option value="PWD JBPHH">PWD JBPHH</option>
+										<option value="PWD JEB LC/FS">PWD JEB LC/FS</option>
+										<option value="PWD KEY WEST">PWD KEY WEST</option>
+										<option value="PWD KINGS BAY">PWD KINGS BAY</option>
+										<option value="PWD KINGSVILLE">PWD KINGSVILLE</option>
+										<option value="PWD KITSAP">PWD KITSAP</option>
+										<option value="PWD LEMOORE">PWD LEMOORE</option>
+										<option value="PWD MAINE">PWD MAINE</option>
+										<option value="PWD MAYPORT">PWD MAYPORT</option>
+										<option value="PWD MC BASE CAMP BLAZ">PWD MC BASE CAMP BLAZ</option>
+										<option value="PWD MERIDIAN">PWD MERIDIAN</option>
+										<option value="PWD MID-SOUTH">PWD MID-SOUTH</option>
+										<option value="PWD MISAWA">PWD MISAWA</option>
+										<option value="PWD MONTEREY">PWD MONTEREY</option>
+										<option value="PWD NAPLES">PWD NAPLES</option>
+										<option value="PWD MARIANAS">PWD MARIANAS</option>
+										<option value="PWD NAVSUPFAC BEAUFORT">PWD NAVSUPFAC BEAUFORT</option>
+										<option value="PWD NEW LONDON">PWD NEW LONDON</option>
+										<option value="PWD NEW ORLEANS">PWD NEW ORLEANS</option>
+										<option value="PWD NEWPORT">PWD NEWPORT</option>
+										<option value="PWD NORFOLK">PWD NORFOLK</option>
+										<option value="PWD NSA HAMPTON RDS">PWD NSA HAMPTON RDS</option>
+										<option value="PWD OCEANA">PWD OCEANA</option>
+										<option value="PWD ORLANDO">PWD ORLANDO</option>
+										<option value="PWD PANAMA CITY">PWD PANAMA CITY</option>
+										<option value="PWD PATUXENT RIVER">PWD PATUXENT RIVER</option>
+										<option value="PWD PENNSYLVANIA">PWD PENNSYLVANIA</option>
+										<option value="PWD PENSACOLA">PWD PENSACOLA</option>
+										<option value="PWD POINT LOMA">PWD POINT LOMA</option>
+										<option value="PWD POLAND">PWD POLAND</option>
+										<option value="PWD PORTSMOUTH">PWD PORTSMOUTH</option>
+										<option value="PWD ROMANIA">PWD ROMANIA</option>
+										<option value="PWD ROTA">PWD ROTA</option>
+										<option value="PWD SAN DIEGO">PWD SAN DIEGO</option>
+										<option value="PWD SASEBO">PWD SASEBO</option>
+										<option value="PWD SEAL BEACH">PWD SEAL BEACH</option>
+										<option value="PWD SIGONELLA">PWD SIGONELLA</option>
+										<option value="PWD SINGAPORE">PWD SINGAPORE</option>
+										<option value="PWD SOUDA BAY">PWD SOUDA BAY</option>
+										<option value="PWD ST CLEMENTE ISLAND">PWD ST CLEMENTE ISLAND</option>
+										<option value="PWD VENTURA">PWD VENTURA</option>
+										<option value="PWD WASHINGTON">PWD WASHINGTON</option>
+										<option value="PWD WHIDBEY ISLAND">PWD WHIDBEY ISLAND</option>
+										<option value="PWD WHITING FIELD">PWD WHITING FIELD</option>
+										<option value="PWD YOKOSUKA">PWD YOKOSUKA</option>
+										<option value="PWD YORKTOWN">PWD YORKTOWN</option>
+									</select>
+								</div>
+								<h5>Select your Branch from the list below:</h5>
+								<div class="mb-3">
+									<select class="form-select form-select-lg" aria-label="Select a branch" id="branch-selector">
+										<option selected>Select a branch</option>
+										<option value="Facilities Management and Sustainment">Facilities Management &amp; Sustainment (FM&amp;S)</option>
+										<option value="Transportation">Transportation</option>
+										<option value="Utilities Management">Utilities Management (UM)</option>
+									</select>
+								</div>
+								<h5>Is there a name or discipline of the ‘shop’ or staff you manage? If so please note
+									below:</h5>
+								<div>
+									<textarea class="form-control" rows="1"></textarea>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+
+				<section id="staff-section" class="mt-5">
+					<header class="bg-transparent text-white border-bottom border-light-blue border-2 mb-3">
+						<h3 class="light-blue-heading">Staff Information</h3>
+					</header>
+					<div id="employee-cards-container">
+
+						<div class="card" id="employee-card-1">
+							<div class="card-header">
+								<div class="d-flex justify-content-between">
+									<div>
+										<h4>Employee <span class="employee-counter">1</span></h4>
+									</div>
+									
+								</div>									
+							</div>
+							<div class="card-body">
+								<form id="employee-info-form-1" action="" method="post" name="employee-info-form-1" data-employee-id="1">
+									<h5>Employee Name?</h5>
+									<div class="row mb-3">
+										<div class="col-sm">
+											<input class="form-control form-control-lg" type="text" placeholder="First"
+												aria-label="First Name">
+										</div>
+										<div class="col-sm">
+											<input class="form-control form-control-lg" type="text" placeholder="Last"
+												aria-label="First Name">
+										</div>
+									</div>
+
+									<h5 class="card-title">Essential Tasks</h5>
+									<div>
+										<select class="js-example-basic-multiple js-states form-control" multiple="multiple" data-placeholder="Type or select all the applicable tasks" data-width="100%">
+											<optgroup label="FM&amp;S" class="fms-select-group" >
+												<option>Facilities management: Manage customer work request</option>
+												<option>Production management: Manage shops performance and workforce oversight</option>
+												<option>Work management: Induct and classify work request</option>
+												<option>Work management: Manage regional call center</option>
+												<option>Work management: Review work performance</option>
+												<option>Execute: Service Calls</option>
+												<option>Plan and execute: Planned/preventive maintenance</option>
+												<option>Update PM job plans projects</option>
+												<option>Perform ICAP</option>
+												<option>Conduct/execute asbestos program management</option>
+												<option>Vertical transportation equipment</option>
+												<option>BLR & UPV</option>
+												<option>Perform pest managememt</option>
+												<option>Maintain fire protection system</option>
+												<option>Building control systems</option>
+												<option>Stormwater management program</option>
+											</optgroup>
+
+											<optgroup label="Transportation" class="transportation-select-group">
+												<option>Manage General Services Administration (GSA) leased vehicles</option>
+												<option>Perform Inventory management</option>
+												<option>Manage B assignments</option>
+												<option>Manage C - Pool Assets</option>
+												<option>Perform regular asset utilization review</option>
+												<option>Perform records management</option>
+												<option>Perform Maintenance Management</option>
+												<option>Operations management: Conduct operator licensing</option>
+												<option>Operations management: Review operator licensing</option>
+												<option>Compliance management</option>
+												<option>Implement flex fuel policy</option>
+												<option>Register trans assets in FEDFMS</option>
+												<option>Register trans assets in FMVRS</option>
+												<option>WHE management/Cranes Management</option>
+												<option>CAT I: Crane operational requirements</option>
+												<option>Validate currency of CAT II and III crane certification</option>
+												<option>Implement Navy Crane Center (NCC) Audit plan of action</option>
+												<option>Train/License railway crew</option>
+												<option>Maintain rail equipment</option>
+												<option>Maintain asset records in MAXIMO</option>
+												<option>Conduct annual rail self assessment</option>
+												<option>Certify Ground level trackage</option>
+												<option>Designate transportation certifying officer for Material Handling Equipment (MHE); Bucket Trucks, AWP</option>
+												<option>Verify equipment markings for capacity and certification</option>
+												<option>Identify MHE designated for ammunition and hazardous material</option>
+												<option>Establish/Maintain FFE M&R Proccess chart and communication matrix</option>
+											</optgroup>
+
+											<optgroup label="Utilities Management" class="um-select-group">
+												<option>Manage commodity procurement</option>
+												<option>Production and Distribution: Natural Gas</option>
+												<option>Production and Distribution: Steam</option>
+												<option>Production and Distribution: Potable Water</option>
+												<option>Production and Distribution: Wastewater</option>
+												<option>Production and Distribution: Electricity</option>
+												<option>Operate and Maintain utilities infrastructure per SOP</option>
+												<option>Conduct GIS Mapping and updates of utilities infrastructure</option>
+												<option>Implement utilities connection permit process</option>
+												<option>Commodity operator in charge designations</option>
+												<option>Certify commodity production facility for operations</option>
+												<option>Collect and treat waste water and industrial waste water</option>
+												<option>Inspect potable water tanks</option>
+												<option>Test and certify backflow prevention devices</option>
+												<option>Certify utilities invoices</option>
+												<option>Review utilities invoices</option>
+												<option>Enter ship connects/disconnect in CIRCUITS</option>
+												<option>Populate CIRCUITS data elements</option>
+												<option>Infrastructure Management</option>
+												<option>Record unplanned outages in MAXIMO</option>
+												<option>Perform UICAP Risk Assessment and develop projects using risk tool</option>
+												<option>Identify/eliminate Steam Loss</option>
+												<option>Identify/eliminate Inflow and Infiltration</option>
+												<option>Identify/eliminate Water loss</option>
+												<option>Prepare major maintenance project documents</option>
+												<option>Synchronize asset inventories in iNFADS, MAXIMO and GIS</option>
+												<option>Update degradation index rating for infrastructure after PM or corrective action</option>
+												<option>Perform proactive utility planning</option>
+											</optgroup>
+										</select>
+									</div>
+
+									<h5 class="card-title mt-3">Trainings</h5>
+									<div>
+										<select class="js-example-basic-multiple js-states form-control" multiple="multiple" data-placeholder="Type or select all the applicable trainings" data-width="100%">
+											<optgroup label="FM&amp;S" class="fms-select-group">												
+												<option>All the CBMM Modules Modules 1-9 (PDT)</option>
+												<option>COGNOS (PDT)</option>
+												<option>Confine Spaces</option>
+												<option>Cost Estimating Training (SUCCESS Estimator, RSMeans, PACES, Cost Works, WII)</option>
+												<option>CPR/First Aid</option>
+												<option>CTC 423 Environmental Law Cost Contracting</option>
+												<option>CTC-466 A/E Contracting</option>
+												<option>Cybersecurity Training Requirements</option>
+												<option>100W  and 210W series</option>
+												<option>Deluge & Preaction Sprinkler Systems</option>
+												<option>E2M Metrics (PDT)</option>
+												<option>Applicable Overseas/State Training Requirements</option>
+												<option>Electrical Systems (ICAP Assessment)</option>
+												<option>eNdeavor Work Management System Introduction (PDT)</option>
+												<option>Energy 101 (FEMP)</option>
+												<option>eProjects 101 PDT</option>
+												<option>ESAFE - EM385</option>
+												<option>EST3 Program & Network</option>
+												<option>Exterior Enclosure/Bldg Evelope (ICAP Assessment)</option>
+												<option>Facilities Energy Management (CECOS)</option>
+												<option>Asbestos Abatement Contractor/Supervisor</option>
+												<option>Fire Alarm Fundamental Series</option>
+												<option>Fire Alarm Installer</option>
+												<option>Fire Protection Inspector Training (NFESC)</option>
+												<option>Fire Protection OEM Specific Traiing (Getz Manufacturing Equip Trng, King Fisher Trng Prog)</option>
+												<option>Fire Pump Application, Inspection & Testing</option>
+												<option>Asbestos AHDHERA Worker Training</option>
+												<option>Fire Pump Series</option>
+												<option>Fire Sprinkler Inspection Training & Certification</option>
+												<option>FRCS- Operational Technology (OT) Configuration Management (CM) Policy and Tool in Maximo</option>
+												<option>Asbestos AHERA Building Inspector</option>
+												<option>HAZMAT Awareness</option>
+												<option>HVAC OEM Specific Training</option>
+												<option>IECC Electrical/Mechanical Building Evelope</option>
+												<option>Industrial Safety</option>
+												<option>Asbestos Annual Refresher Training</option>
+												<option>Inspection, Testing & Maint of Automatic Sprinkler</option>
+												<option>Inspection, Testing & Maint of FA Sys & Water Based Fire</option>
+												<option>Integrated Priority List (IPL) Management (PDT)</option>
+												<option>Intro to FEAD/ROICC (CECOS)</option>
+												<option>Intro to FMD and Production Div (CECOS)</option>
+												<option>Intro to Performance Assessment Part 1 and 2 (PDT)</option>
+												<option>Asbestos Class II Limited Task</option>
+												<option>Asbestos Class III/O&M Training</option>
+												<option>LO/TO</option>
+												<option>Managing energy audit reporting and project development (PDT)</option>
+												<option>MAXIMO - Jobplans and Routes (PDT)</option>
+												<option>MAXIMO - Managing Assets/Inventory (PDT)</option>
+												<option>MAXIMO - PM I, II, III, PM Workshop (PDT)</option>
+												<option>Asbestos General Awareness Training</option>
+												<option>MAXIMO - Service Requests & Work Orders (PDT)</option>
+												<option>Maximo Anywhere Mobile Application (PDT)</option>
+												<option>Maximo Purchase Request & Purchase Order (PDT)</option>
+												<option>Maximo Updating Maximo Assest with a Mobile Device (PDT)</option>
+												<option>Asbestos Inspector Training</option>
+												<option>MILCON Installation/PWD 1391 (PDT)</option>
+												<option>Asbestos Management Planner</option>
+												<option>NAVFAC 101 (PDT)</option>
+												<option>Asbestos Project Designer</option>
+												<option>New Hire Advanced Series</option>
+												<option>NFPA 10, 13, 20, 25, 72</option>
+												<option>NFPA 101 Life Safety Code</option>
+												<option>NFPA 2001 Special Hazards Suppression Systems</option>
+												<option>Asbestos Site-Specific Awareness</option>
+												<option>NFPA Electrical Safety</option>
+												<option>Asbestos, Mold, Lead, Radon Testing</option>
+												<option>Periodic Fire Pump ITM</option>
+												<option>Plumbing Systems (ICAP Assessment)</option>
+												<option>Project Management (PMI)</option>
+												<option>Automatic Sprinkler ITM</option>
+												<option>Sprinkler Systems: Planned Impairments</option>
+												<option>TWMS 101 (PDT)</option>
+												<option>VTE Inspector Training (NFESC)</option>
+												<option>VTE OEM Specific Training</option>
+												<option>Wet Pipe Automatic Sprinkler Systems</option>
+												<option>BCS OEM Specific Training</option>
+												<option>BIM/eOMSI Whole Building Guide (PDT)</option>
+												<option>Boiler Safety Standdown (PDT)</option>
+												<option>Boiler/UPV Inspector Training (NFESC)</option>
+												<option>Boiler/UPV OEM Specific Training</option>
+												<option>CBMM Building a project in Maximo Video (PDT)- Module 7</option>
+												<option>CBMM Electrical Systems (PDT)</option>
+												<option>ACQ 370 Acquisition Law</option>
+												<option>CBMM Module 1 - 101 Introduction (PDT)</option>
+												<option>CBMM Module 2 - Classifying Inventory Categories (PDT)</option>
+												<option>CBMM Module 3 - Creating a Component (PDT)</option>
+												<option>CBMM Module 4 - Updating Condition Index (PDT)</option>
+												<option>CBMM Module 5 - Assessment Planning (PDT)</option>
+												<option>CBMM Module 6 - Dveloping DCR Job Plan (PDT)</option>
+												<option>CBMM Module 7 - Building a Project in Maximo (PDT)</option>
+												<option>CBMM Module 8 - COGNOS Reporting Tool (PDT)</option>
+												<option>CBMM Module 9 -Updating Inventory at Closeout (PDT)</option>
+												<option>CBMM Plumbing Systems (PDT)</option>
+											</optgroup>
+
+											<optgroup label="Transportation" class="transportation-select-group">
+												<option>Course FIAR: Periodic Virtual Inventory</option>
+												<option>Crane Operations - P307</option>
+												<option>Crane Rigging - P307</option>
+												<option>Crane Safety - P307</option>
+												<option>DOT Hazmat Training</option>
+												<option>DOT Safety Rules and Regulations</option>
+												<option>Dump Truck Training CDL</option>
+												<option>APWA Fleet Management Course (32hrs)</option>
+												<option>Federal Motor Vehicle - Registration System (FMVRS) Training</option>
+												<option>Fleet Automated Statistical Tool (FAST)</option>
+												<option>Forklift Operators Training</option>
+												<option>GSA Basic Fleet Management Course</option>
+												<option>iNFADS</option>
+												<option>Introduction to Management Analysis</option>
+												<option>Local Railroad Operating Directive</option>
+												<option>MAXIMO - Managing Assets/Inventory (PDT)</option>
+												<option>MAXIMO Software Training</option>
+												<option>Medical Certificate IAW DOT</option>
+												<option>Mobile Crane System Theory</option>
+												<option>NAVFAC EXWC Training</option>
+												<option>None</option>
+												<option>Overhead Crane Safety Rigging Industry</option>
+												<option>Preventive Maintenance for Truck Drivers & Tractor Trailer Drivers</option>
+												<option>Process Driven Training (PDT)</option>
+												<option>Rail Assessor Training</option>
+												<option>Track Safety Standards Training</option>
+												<option>Trackage Inspector Training Course (NFESC)</option>
+												<option>Basic Industrial Safety (NAVOSH)</option>
+												<option>CAT II/III Crane Safety - P307</option>
+											</optgroup>
+
+											<optgroup label="Utilities Management" class="um-select-group">
+												<option>AMI meters and Data Acquisition System</option>
+												<option>Circuit Breaker Maintenance, Low-Voltage</option>
+												<option>Circuit Breaker Maintenance, Medium-Voltage</option>
+												<option>CIRCUITS Account Manager Training</option>
+												<option>CIRCUITS Manual Training</option>
+												<option>CIRCUITS Meter Data Management</option>
+												<option>CLC106 – COR with Mission Focus </option>
+												<option>Continuing education credits required by local licensing authority</option>
+												<option>Cost Estimating Training (SUCCESS Estimator, RSMeans, PACES, Cost Works, WII)</option>
+												<option>CPR/First Aid</option>
+												<option>CTC 342 – NAVFAC Contracting Officer Representative COR/COAR/NTR</option>
+												<option>CTC-466 A/E Contracting</option>
+												<option>API</option>
+												<option>Electrical Print Reading</option>
+												<option>Electrical SAFE SOPs</option>
+												<option>Electrical Safety for Industrial Facilities</option>
+												<option>Electrical Safety for Utilities</option>
+												<option>eProjects 101 PDT</option>
+												<option>ESAFE’s (Confined Space Entry Training, Trenching and Shoring, Respirator, LOTO, Materials Handling, etc.)</option>
+												<option>ESRI ArcGIS Training</option>
+												<option>Fundamentals of pole and line (NAVFAC design guide)</option>
+												<option>Gateway 2.0 Website (Warning Order for each POM cycle)</option>
+												<option>Glove and Hot Stick Training</option>
+												<option>Grounding and Bonding</option>
+												<option>Hot Stick Fundamentals Hot Glove Work</option>
+												<option>Industrial Safety</option>
+												<option>1391 Development</option>
+												<option>Intro to Supervisory Training</option>
+												<option>Introduction to Safe Operations of High Voltage</option>
+												<option>Job Specific Technical Training (pipes, pumping systems, pipefitting, equipment operation, etc.)</option>
+												<option>Labor Relations for Supervisors</option>
+												<option>Leadership Development Program (LDP)</option>
+												<option>LOTO Training/ArcFlash</option>
+												<option>Manhole rescue</option>
+												<option>MAT110 Technical Mathematics</option>
+												<option>MAXIMO - Managing Assets/Inventory (PDT)</option>
+												<option>MAXIMO - Service Requests & Work Orders (PDT)</option>
+												<option>Maximo 101 PDT</option>
+												<option>Maximo Anywhere Mobile Application (PDT)</option>
+												<option>Maximo Purchase Request & Purchase Order (PDT)</option>
+												<option>Maximo Updating Maximo Assest with a Mobile Device (PDT)</option>
+												<option>Metering Basics</option>
+												<option>MIL-HDBK-1003/07 (UFC 3-430-02N)</option>
+												<option>MIL-HDBK-1125/1</option>
+												<option>MIL-HDBK-1136</option>
+												<option>MO-206</option>
+												<option>MO-209</option>
+												<option>MO-225</option>
+												<option>National Electrical Code</option>
+												<option>NAVFAC HQ Portal Process Driven Training CIRCUITS Videos</option>
+												<option>NAVFAC INST 11300.A</option>
+												<option>NAVFACINST 11300.2 Policy Procedures for Advancing Navy Commodities Cost Reduction Program</option>
+												<option>NES Distribution Training (Field Trip)</option>
+												<option>NETOPS 29A</option>
+												<option>NFPA 70E Electrical Safety</option>
+												<option>None</option>
+												<option>Operation of Altec High Reach and Line Maint. Trucks</option>
+												<option>OPNAV 5090.1</option>
+												<option>OPNAVINST 5090.1E</option>
+												<option>Overhead and Underground Distribution Line Training</option>
+												<option>Overseas Drinking Water Operator Training – Distribution – Level 1 (PDT, Overseas only, Applicable Level)</option>
+												<option>Overseas Drinking Water Operator Training – Distribution – Level 2 (PDT, Overseas only, Applicable Level)</option>
+												<option>Overseas Drinking Water Operator Training – Distribution – Level 3 (PDT, Overseas only, Applicable Level)</option>
+												<option>Overseas Drinking Water Operator Training – Treatment – Level 1 (PDT, Overseas only, Applicable Level)</option>
+												<option>Overseas Drinking Water Operator Training – Treatment – Level 2 (PDT, Overseas only, Applicable Level)</option>
+												<option>Overseas Drinking Water Operator Training – Treatment – Level 3 (PDT, Overseas only, Applicable Level)</option>
+												<option>ASME Boiler and Pressure Vessel Piping Code</option>
+												<option>P-603</option>
+												<option>Pole-Top rescue</option>
+												<option>Pollutant Discharge Permitting</option>
+												<option>Power Fundamentals</option>
+												<option>AutoCAD</option>
+												<option>Project Management Training</option>
+												<option>PWBL Community Management Plan Training Courses</option>
+												<option>PWD Workload Management Leadership Overview</option>
+												<option>Safe Drinking Water Act and Overseas Drinking Water – Module 1: Overview (PDT)</option>
+												<option>Safe Drinking Water Act and Overseas Drinking Water – Module 2: Treatment and Distribution (PDT)</option>
+												<option>Service Desk Guide for Utility Outages</option>
+												<option>B-5.2.4 Boiler and Unfired Pressure Vessels (UPV) Inspection and Oversight</option>
+												<option>Substation Maintenance 1- Medium Voltage</option>
+												<option>Substation Maintenance 2- Medium Voltage</option>
+												<option>Training on one-line/maps of electrical distribution circuits</option>
+												<option>Training on trouble-shooting distribution circuits and generating and controlling equipment</option>
+												<option>Basic Electrical Troubleshooting</option>
+												<option>UFC 3-230-01 Water Storage and Distribution</option>
+												<option>UFC 3-230-02 O&M Water Supply Systems</option>
+												<option>UFC 3-230-02 Operation & Maintenance: Water Supply</option>
+												<option>UFC 3-230-03 Water Treatment</option>
+												<option>UFC 3-240-02 Domestic Wastewater Treatment</option>
+												<option>UFC 3-240-03 Operation and Maintenance (O&M): Wastewater Treatment</option>
+												<option>UFC 3-240-1 Wastewater Collection</option>
+												<option>Basic GIS Training</option>
+												<option>UFC 3-410-06N</option>
+												<option>UFC 3-430-01</option>
+												<option>UFC 3-430-08N</option>
+												<option>UFC 3-430-09 Exterior Mechanical Utility Distribution</option>
+												<option>UFC 3-460-01 Design: Petroleum Fuel Facilities, with Change 2</option>
+												<option>UFC 3-460-03 O&M: Maintenance of Petroleum Systems</option>
+												<option>UFC 3-501-01 Electrical Engineering</option>
+												<option>UFC 3-550-01 Exterior Electrical Power Distribution</option>
+												<option>UFC 3-560-01 Electrical Safety, O&M, with Change 5</option>
+												<option>UFGS 33 08 55 Commissioning of Fuel Facility Systems</option>
+												<option>UFGS 33 59 00 Tightness Testing of Existing Underground Fuel Systems</option>
+												<option>UICAP</option>
+												<option>Understanding Electrical Drawings</option>
+												<option>Utilities Inventory Condition Assessment (U-ICAP) Sustainment Guide</option>
+												<option>Utilities Inventory Condition Assessment Program (U-ICAP) Sustainment Guide</option>
+												<option>Basic Instrumentation</option>
+												<option>Wastewater Modeling Training</option>
+												<option>BMS 11.3.2 Regular Cycle Navy "Blue" MCON Region/FEC Team 1391</option>
+												<option>BMS 25.7.1.5 Real Property - Periodic Inventory</option>
+												<option>BMS 5.2.12 Allocation of Utility Usage</option>
+												<option>BMS 5.2.13 NWCF Major Maintenance Repair Program (MMRP) & Utility MILCON Projects</option>
+												<option>BMS 5.2.14 Utility Outage Reporting and Data Collection</option>
+												<option>BMS 5.2.15 Utilities Real Property Inventory</option>
+												<option>BMS 5.2.19 Utility Connections to DON-owned Utility Systems</option>
+												<option>BMS 5.2.20 Utilities Geographic Information System Data Maintenance Utilities GIS Sustainment Guide Data Collection Guide (DCG)</option>
+												<option>BMS 5.2.21 Utilities Payable Process</option>
+												<option>BMS 5.2.24 Utilities Work Type Metrics</option>
+												<option>BMS B-24.10 Cross-Connection Control and Backflow Prevention</option>
+												<option>BMS B-25.6 Project Development</option>
+												<option>BMS B-5.2.11 Utility Strategic Investment Plan</option>
+												<option>BMS B-5.2.3 Utility Acquisition</option>
+												<option>BMS B-5.2.6 Competitive Electricity</option>
+												<option>BMS B-5.2.7 Competitive Natural Gas</option>
+												<option>BMS B-5-2-10 Purchased Utility Commodities</option>
+												<option>BMS S-17.5.2 Utility Acquisition</option>
+												<option>Bucket truck rescue</option>
+												<option>Cable Splicing and Terminating- Medium Voltage</option>
+												<option>Cable Testing and Fault Location</option>
+												<option>CAGI</option>
+											</optgroup>
+										</select>
+									</div>
+
+									<h5 class="card-title mt-3">Credentials</h5>
+									<div>
+										<select class="js-example-basic-multiple js-states form-control" multiple="multiple" data-placeholder="Type or select all the applicable credentials" data-width="100%">
+											<optgroup label="FM&amp;S" class="fms-select-group">
+												<option>CPR Certification</option>
+												<option>High Lift/Man Lift/JLG/Crane Certification</option>
+												<option>Medical Certification</option>
+												<option>Master Trade License/Certification</option>
+												<option>Backflow Prevention Tester Certification</option>
+												<option>EPA Freon/410A Refrigerant Handling Certification</option>
+												<option>Electrical Safety Certification</option>
+												<option>Gas Pipe Coupling/Machine Certification</option>
+												<option>Qualified Environmental Professional (QEP)</option>
+												<option>Respirator Certification</option>
+												<option>Smoke Reader Certification</option>
+												<option>Boom Truck Certification</option>
+												<option>HILTI GUN Certification</option>
+												<option>Backhoe Certification</option>
+												<option>CBMM Unit Pricing Cost Book Certification</option>
+												<option>DAWIA Facilities Engineering Level II</option>
+												<option>CBMM Advanced Assessment Certification</option>
+												<option>DAWIA Facilities Engineering Level III</option>
+												<option>CBMM Basic FMS Certification</option>
+												<option>DAWIA Program Management Level I</option>
+												<option>DAWIA Program Management Level II</option>
+											</optgroup>
+
+											<optgroup label="Transportation" class="transportation-select-group">
+												<option>Class A Federal Government Drivers License</option>
+												<option>Class C Operator's Permit, Regular</option>
+												<option>Crane Operator's License - P307</option>
+												<option>Hazmat Certification Mobile Crane Safety & Operator Certification</option>
+												<option>State Commercial Drivers License (CDL)</option>
+												<option>Ordinance Handling Certification - NAVSEA OP5</option>
+												<option>Hazmat Certification</option>
+												<option>Hazmat CDL Endorsement - State CDL</option>
+												<option>APWA Fleet Manager Certification</option>
+												<option>Manlift and Crane Certification</option>
+												<option>Medical Certification</option>
+												<option>Federal Railroad Administration (FRA) Certification</option>
+												<option>Forklift Safety & Inspector Certification</option>
+											</optgroup>
+
+											<optgroup label="Utilities Management" class="um-select-group">
+												<option>Forklift License</option>
+												<option>Backhoe Certification</option>
+												<option>Commercial Drivers License</option>
+												<option>Operator’s License </option>
+												<option>Professional Engineer (PE)</option>
+												<option>Operator's License</option>
+												<option>CPR Certification</option>
+												<option>Water System Operator Certification</option>
+												<option>Backflow Prevention Assembly Tester Certification</option>
+												<option>DAWIA Facilities Engineering Level III</option>
+												<option>DAWIA Facilities Engineering Level II</option>
+											</optgroup>
+										</select>
+									</div>
+
+									<h5 class="card-title mt-3">Education</h5>
+									<div class="mb-3">
+										<select class="form-select form-select-lg" aria-label="Select the highest education level the employee has completed">
+											<option selected>Select the highest education level the employee has completed</option>
+											<option value="None">None</option>
+											<option value="High School Diploma">High School Diploma</option>
+											<option value="Associates">Associates</option>
+											<option value="Bachelors">Bachelors</option>
+											<option value="Masters">Masters</option>
+											<option value="PhD">PhD</option>
+										</select>
+									</div>
+								</form>
+
+								
+							</div>
+						</div>
+
+					</div>
+
+					<div class="mt-5 d-grid gap-2">
+						<button type="button" class="btn btn-outline-primary" id="add-employee-bt"><i class="fas fa-user-plus"></i> Add another employee</button>
+					</div>
+				</section>
+
+				<div class="mt-5 d-flex justify-content-center mb-5">
+					<button type="button" class="btn btn-primary btn-lg" id="submit-bt">Submit</button>
+				</div>
+
+			</div>
+		</div>
+
+	</main>
+
+	<div class="container">
+		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+		  <div class="col-md-4 d-flex align-items-center">
+			
+			<span class="text-muted">© Jacobs</span>
+		  </div>
+		</footer>
+	</div>
+
+	
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			$('.js-example-basic-multiple').select2();
+		});
+	</script>
+
+	<script src="js/appmanager_v1.js"></script>
+
+</body>
+
+</html>
