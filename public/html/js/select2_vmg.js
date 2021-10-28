@@ -82,7 +82,7 @@ $(document).ready(function() {
     });
 
 
-});
+
 
 
 
@@ -129,26 +129,38 @@ function GetEmployees (array, manager){
 
 // var _manager = new Manager('mister', 'manager', 'hs diploma');
 // var _employee1 = _manager.addEmployee('monty', 'wilson', 'MFA');
-// console.log("unique id: " + _employee1.id)
+// console.log("unique id: " + _employee1._id)
 // var _employee2 = _manager.addEmployee('hollie', 'schmidt', 'BFA');
-// console.log("unique id: " + _employee2.id)
+// console.log("unique id: " + _employee2._id)
 // var _employee3 = _manager.addEmployee('intern', 'wendy', 'BA');
-// console.log("unique id: " + _employee3.id)
+// console.log("unique id: " + _employee3._id)
 // console.log(_manager)
-// _manager.removeEmployee(_employee2.id);
+// _manager.removeEmployee(_employee2._id);
 
 
 
+manager = null;
+//check for persistent manager data
 
+$('#add-employee-bt').click(function(event){
+    event.preventDefault();
+    var _managerFirst = $('#managerFirst').val();
+    var _managerLast = $('#managerLast').val();
+    if (!manager){
+        managerInit(_managerFirst, _managerLast, null)
+    }
+    var _managerFirst = $('#employeeFirst').val();
+    var _managerLast = $('#employeeLast').val();
+})
 
-
-//manager class constructor
+//manager class constructor 
 function Manager(managerFirst, managerLast, managerEducation){
     this.init = managerInit;
     this.self;
     this.employees = [];
     this.addEmployee = addEmployee;
     this.removeEmployee = removeEmployee;
+    this.addEmployeeListener = addEmployeeListener;
     this.init(managerFirst, managerLast, managerEducation);
 }
 
@@ -159,6 +171,7 @@ function Manager(managerFirst, managerLast, managerEducation){
         _employee.education = managerEducation;
         _employee.manager = "is manager";
         this.self = _employee;
+        this.addEmployeeListener();
         return this;
     }
 
@@ -185,6 +198,13 @@ function Manager(managerFirst, managerLast, managerEducation){
         return _employeeToDel;
     }
 
+    function addEmployeeListener(){
+        // $('#employee-list-input').click(function(event){
+        //     event.preventDefault();
+        //     console.log('click')
+        // })
+    }
+
 
 
 //employee class constructor
@@ -205,13 +225,13 @@ function Employee(){
 }
 
     function employeeInit(){
-        this._id = this.generateId(5);
+        this._id = this.generateId(7);
     }
 
     //utility function to add unique id
     function generateId(l){
         var text = "";
-        var char_list = "0123456789";
+        var char_list = "0123456789abcdefghijklmnopqrstuvwxyz";
         for(var i=0; i < l; i++ ){  
             text += char_list.charAt(Math.floor(Math.random() * char_list.length));
         }
@@ -235,6 +255,8 @@ function Employee(){
     function removeActivity(){
 
     }
+
+});
 
 /*
 Enter an employee name and click "add employee" for each employee you manage.
