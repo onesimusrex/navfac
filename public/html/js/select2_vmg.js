@@ -127,89 +127,149 @@ function GetEmployees (array, manager){
     return /*_result*/ data 
 }
 
-// var _manager = new Manager('mister', 'manager', 'hs diploma');
-// var _employee1 = _manager.addEmployee('monty', 'wilson', 'MFA');
-// console.log("unique id: " + _employee1._id)
-// var _employee2 = _manager.addEmployee('hollie', 'schmidt', 'BFA');
-// console.log("unique id: " + _employee2._id)
-// var _employee3 = _manager.addEmployee('intern', 'wendy', 'BA');
-// console.log("unique id: " + _employee3._id)
-// console.log(_manager)
-// _manager.removeEmployee(_employee2._id);
+/*
 
+var _manager = new Manager('mister', 'manager', 'hs diploma');
+var _employee1 = _manager.addEmployee('monty', 'wilson', 'MFA');
+console.log("unique id: " + _employee1._id)
+var _employee2 = _manager.addEmployee('hollie', 'schmidt', 'BFA');
+console.log("unique id: " + _employee2._id)
+var _employee3 = _manager.addEmployee('intern', 'wendy', 'BA');
+console.log("unique id: " + _employee3._id)
+console.log(_manager)
+_manager.removeEmployee(_employee2._id);
 
+<li class="list-group-item">John Doe <button type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i> remove</button></li>
+
+*/
 
 manager = null;
-//check for persistent manager data
+ListenNewManager(); 
+function ListenNewManager(){
+    $('#add-employee-bt').on('click.manager', function(event){
+        event.preventDefault();
+        var _managerFirst = $('#managerFirst').val();
+        var _managerLast = $('#managerLast').val();
+        if (!manager){
+            manager = new Manager(_managerFirst, _managerLast, null)
+        }
+    })
+}
 
-$('#add-employee-bt').click(function(event){
-    event.preventDefault();
-    var _managerFirst = $('#managerFirst').val();
-    var _managerLast = $('#managerLast').val();
-    if (!manager){
-        managerInit(_managerFirst, _managerLast, null)
-    }
-    var _managerFirst = $('#employeeFirst').val();
-    var _managerLast = $('#employeeLast').val();
-})
-
-//manager class constructor 
+//manager class  
 function Manager(managerFirst, managerLast, managerEducation){
-    this.init = managerInit;
+    this.init = managerInit; //constructor
     this.self;
     this.employees = [];
     this.addEmployee = addEmployee;
     this.removeEmployee = removeEmployee;
     this.addEmployeeListener = addEmployeeListener;
+    this.removeEmployeeListener = removeEmployeeListener;
+    this.updateEmployeeDisplay = updateEmployeeDisplay;
     this.init(managerFirst, managerLast, managerEducation);
 }
 
     function managerInit(managerFirst, managerLast, managerEducation){
+        _this = this;
+        $('#add-employee-bt').off('click.manager')
         var _employee = new Employee();
         _employee.firstName = managerFirst;
         _employee.lastName = managerLast;
         _employee.education = managerEducation;
         _employee.manager = "is manager";
         this.self = _employee;
-        this.addEmployeeListener();
+        // setTimeout(function(){
+            var firstName = $('#employeeFirst').val();
+            var lastName = $('#employeeLast').val()
+            // console.log(_this)
+            _this.addEmployeeListener(firstName, lastName);
+        // }, 200)
+        this.removeEmployeeListener();
+        this.updateEmployeeDisplay(_employee, false);
         return this;
     }
 
     function addEmployee(emplFirst, emplLast, emplEducation){
+        console.log('added employee')
         var _employee = new Employee();
         _employee.firstName = emplFirst;
         _employee.lastName = emplLast;
         _employee.education = emplEducation;
         _employee.manager = this.self;
         this.employees.push(_employee)
-        console.log(_employee)
+        this.addEmployeeListener();
+        this.removeEmployeeListener();
+        this.updateEmployeeDisplay(_employee, false);
         return _employee;
     }
 
     function removeEmployee(_id){
+        console.log('removing employee')
         _this = this;
         var _employeeToDel;
         this.employees.map(function(item, index){
             if(item._id == _id){
                 _employeeToDel = item;
+                this.updateEmployeeDisplay(_employeeToDel, true);
                 _this.employees.splice(index, 1)
             }
         })
         return _employeeToDel;
     }
 
-    function addEmployeeListener(){
-        // $('#employee-list-input').click(function(event){
-        //     event.preventDefault();
-        //     console.log('click')
-        // })
+    function addEmployeeListener(firstName, lastName, edu){
+        _this = this;
+        $('#add-employee-bt').off('click.employee'); 
+        $('#add-employee-bt').on('click.employee',function(event){
+            event.preventDefault();
+            var _employeeFirst = $('#employeeFirst').val();
+            var _employeeLast = $('#employeeLast').val();
+            _this.addEmployee(_employeeFirst, _employeeLast, null);
+        })
+        if (firstName || lastName){
+            var _employeeFirst = firstName || null;
+            var _employeeLast = lastName || null;
+            _this.addEmployee(_employeeFirst, _employeeLast, null);
+        }
+
+    }
+
+    function removeEmployeeListener(){
+        _this = this;
+        console.log('adding remove listener')
+        $('.remove-item-bt').off('click.employee');
+        $('.remove-item-bt').on('click.employee',function(event){
+            event.preventDefault();
+            console.log('remove called')
+            var _employeeId = $(this).attr('id');
+            console.log(_employeeId)
+            var employee = _this.removeEmployee(_employeeId);
+            // _this.updateEmployeeDisplay(employee, true)
+        })
+    }
+
+    function updateEmployeeDisplay(employee, remove){
+        if (!remove){
+            var li = document.createElement('li');
+            $(li).addClass('list-group-item').text(employee.firstName + " " + employee.lastName).append('<button type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i>remove</button>').attr('id', employee._id)
+            $('#employee-list').append(li)
+            $('#'+ employee._id + '> button').on('click.test', function(event){
+                event.preventDefault();
+                console.log('riding');
+
+            })
+            var _employeeFirst = $('#employeeFirst').val('');
+            var _employeeLast = $('#employeeLast').val('');
+        } else {
+            $('#'+employee._id).remove();
+        }
     }
 
 
 
-//employee class constructor
+//employee class 
 function Employee(){
-    this.init = employeeInit;
+    this.init = employeeInit; //constructor
     this._id;
     this.firstName;
     this.lastName;
