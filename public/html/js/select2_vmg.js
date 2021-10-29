@@ -186,7 +186,7 @@ function addEmployeeListener(firstName, lastName, edu){
 
 //manager class  
 function Manager(managerFirst, managerLast, managerEducation){
-    this.init = managerInit; //constructor
+    this.init = managerInit; 
     this.self;
     this.employees = [];
     this.addEmployee = addEmployee;
@@ -219,6 +219,8 @@ function Manager(managerFirst, managerLast, managerEducation){
         _employee.education = emplEducation;
         _employee.manager = this.self;
         this.employees.push(_employee)
+
+        AddEmployeesToSelect2(this)
 
         this.updateEmployeeDisplay(_employee, false);
         return _employee;
@@ -323,6 +325,53 @@ function Employee(){
 
     }
 
+    //restrict employee selections
+
+    // $('.select-group').select2({
+    //     placeholder: 'Select your employees2',
+    //     closeOnSelect: false,
+    //     disabled: false
+    // }) 
+
+
+
+    function AddEmployeesToSelect2(_manager){
+
+        var addedEmployees = _manager.employees.map((item, index) => {
+            var _nameDisplay = item.firstName + ' ' + item.lastName;
+            var _item = {id:index, text:_nameDisplay};
+            return _item;
+        })
+        var arr = ConvertArraySelect2(addedEmployees)
+        $('.select-group').empty()
+        $('.select-group').select2({
+            data: arr,
+            // placeholder: 'Select your employees2',
+            closeOnSelect: false
+            // disabled: false
+        })  
+
+        console.log(addedEmployees)
+        // var lastEmployee = _manager.employees[manager.employees.length-1]
+        // var _item = {id:i, text:_nameDiplay};
+
+
+    }   
+
+    function ConvertArraySelect2(array, index){
+        data = array.map(function (item, i){
+            item.id = i;
+            _item = {id:i, text:item.manager}
+            return _item;
+        })
+        // console.log(data)
+        _result = {
+            'results':data
+        }
+        // return {results: data }
+        return data
+        
+    }
 });
 
 /*
