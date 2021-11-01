@@ -206,11 +206,11 @@
 										<div class="row mb-3">
 											<div class="col-sm">
 												<input id="employeeFirst" class="form-control form-control-lg" type="text" placeholder="First"
-													aria-label="First Name">
+													aria-label="First Name" required>
 											</div>
 											<div class="col-sm">
 												<input id="employeeLast" class="form-control form-control-lg" type="text" placeholder="Last"
-													aria-label="First Name">
+													aria-label="First Name" required>
 											</div>
 										</div>
 										
@@ -248,7 +248,7 @@
 									<div class="row">
 										<div class="col-md"><strong>Facilities management: Manage customer work request</strong></div>
 										<div class="col-md">
-											<select class="js-example-data-array form-control select-group" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
+											<select class="js-example-basic-multiple js-states" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
 
 											</select>
 
@@ -591,14 +591,7 @@
 	
 
 
-
-	<script>
-		$(document).ready(function () {
-			$('.js-example-basic-multiple').select2();
-		});
-	</script>
-
-	<script src="js/appmanager_v1.js"></script>
+	<!-- <script src="js/appmanager_v1.js"></script> -->
 
 </body>
 
