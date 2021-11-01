@@ -142,27 +142,34 @@ _manager.removeEmployee(_employee2._id);
 <li class="list-group-item">John Doe <button type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i> remove</button></li>
 
 */
-
+$('.js-example-basic-multiple').select2() 
 manager = null;
 ListenNewManager(); 
 
 function ListenNewManager(){
     $('#add-employee-bt').on('click.manager', function(event){
-        console.log(event.target)
+
         event.preventDefault();
-        if (!manager){
-            var _managerFirst = $('#managerFirst').val();
-            var _managerLast = $('#managerLast').val();
-            manager = new Manager(_managerFirst, _managerLast, null)
-            // addEmployeeListener();
-        } else console.log('manager alreadey added')
-        
-        console.log($('#employeeFirst').val());
         var _employeeFirst = $('#employeeFirst').val();
         var _employeeLast = $('#employeeLast').val();
-        manager.addEmployee(_employeeFirst, _employeeLast, null);
-        $('#employeeFirst').val('');
-        $('#employeeLast').val('');
+        console.log('click event')
+        if  (_employeeFirst.length > 0 && _employeeLast.length > 0){
+            console.log('click event 2')
+            $('#employeeFirst').focus();
+            if (!manager){
+                var _managerFirst = $('#managerFirst').val();
+                var _managerLast = $('#managerLast').val();
+                manager = new Manager(_managerFirst, _managerLast, null)
+                manager.addEmployee(_managerFirst, _managerLast, null);
+                // addEmployeeListener();
+            } else console.log('manager alreadey added')
+            
+            console.log($('#employeeFirst').val());
+            manager.addEmployee(_employeeFirst, _employeeLast, null);
+            $('#employeeFirst').val('');
+            $('#employeeLast').val('');
+        }
+
     })
 }
 
@@ -207,7 +214,7 @@ function Manager(managerFirst, managerLast, managerEducation){
         _employee.manager = "is manager";
         this.self = _employee;
 
-        this.updateEmployeeDisplay(_employee, false);
+        // this.updateEmployeeDisplay(_employee, false);
         return this;
     }
 
@@ -271,6 +278,7 @@ function Manager(managerFirst, managerLast, managerEducation){
             // var _employeeLast = $('#employeeLast').val('');
         } else {
             $('#'+employee._id).remove();
+            $('option[data-custom-htmlid="'+employee._id+'"]').remove()
         }
     }
 
@@ -339,19 +347,28 @@ function Employee(){
 
         var addedEmployees = _manager.employees.map((item, index) => {
             var _nameDisplay = item.firstName + ' ' + item.lastName;
-            var _item = {id:index, text:_nameDisplay};
+            var _item = {id:index, text:_nameDisplay, htmlId: item._id};
             return _item;
         })
-        var arr = ConvertArraySelect2(addedEmployees)
-        $('.select-group').empty()
-        $('.select-group').select2({
-            data: arr,
-            // placeholder: 'Select your employees2',
-            closeOnSelect: false
+        console.log(addedEmployees)
+        // var arr = ConvertArraySelect2(addedEmployees)
+        $('.js-example-basic-multiple').each(function(){
+            $(this).empty()
+        })
+        $('.js-example-basic-multiple').select2({
+            data: addedEmployees,
+            placeholder: 'Select your employees',
+            closeOnSelect: false,
+            templateSelection: function (data, container) {
+                // Add custom attributes to the <option> tag for the selected option
+                $(data.element).attr('data-custom-htmlId', data.htmlId);
+                console.log(data.element)
+                // console.log(container)
+                return data.text;
+              }
             // disabled: false
         })  
 
-        console.log(addedEmployees)
         // var lastEmployee = _manager.employees[manager.employees.length-1]
         // var _item = {id:i, text:_nameDiplay};
 
@@ -372,6 +389,32 @@ function Employee(){
         return data
         
     }
+
+    $('#managerFirst').focus();
+
+    $("#employeeLast, #managerLast, #employeeFirst").keypress(function( event ) {
+        console.log('press')
+        if ( event.which == 13 ) {
+           event.preventDefault();
+           if ($(this).attr('id') == "employeeLast"){
+                console.log('empl last press')
+                $('#add-employee-bt').trigger('click');
+           } else if ($(this).attr('id') == "managerFirst"){
+                if ($('#managerFirst').val().length > 0){
+                    $('#managerLast').focus();
+                }
+           } else if ($(this).attr('id') == "employeeFirst"){
+                $('#employeeLast').focus();
+                if ($('#employeeFirst').val().length > 0){
+                    $('#employeeLast').focus();
+                }
+           }
+
+        }   
+      });
+
+
+
 });
 
 /*
@@ -379,3 +422,5 @@ Enter an employee name and click "add employee" for each employee you manage.
 
 Add the names of the employees who engage in each of the essential tasks listed below. Multiple employees can be selected. Leave blank if no staff participate in the task.
 */
+
+
