@@ -142,6 +142,10 @@ _manager.removeEmployee(_employee2._id);
 <li class="list-group-item">John Doe <button type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i> remove</button></li>
 
 */
+
+
+
+
 $('.js-example-basic-multiple').select2() 
 manager = null;
 ListenNewManager(); 
@@ -152,43 +156,21 @@ function ListenNewManager(){
         event.preventDefault();
         var _employeeFirst = $('#employeeFirst').val();
         var _employeeLast = $('#employeeLast').val();
-        console.log('click event')
         if  (_employeeFirst.length > 0 && _employeeLast.length > 0){
-            console.log('click event 2')
             $('#employeeFirst').focus();
             if (!manager){
                 var _managerFirst = $('#managerFirst').val();
                 var _managerLast = $('#managerLast').val();
-                manager = new Manager(_managerFirst, _managerLast, null)
-                manager.addEmployee(_managerFirst, _managerLast, null);
-                // addEmployeeListener();
-            } else console.log('manager alreadey added')
-            
-            console.log($('#employeeFirst').val());
-            manager.addEmployee(_employeeFirst, _employeeLast, null);
+                manager = new Manager(_managerFirst, _managerLast, "null")
+                manager.addEmployee(_managerFirst, _managerLast, "null");
+            } 
+            manager.addEmployee(_employeeFirst, _employeeLast, "null");
+            //reset fields
             $('#employeeFirst').val('');
             $('#employeeLast').val('');
         }
 
     })
-}
-
-function addEmployeeListener(firstName, lastName, edu){
-    _this = manager;
-    // $('#add-employee-bt').off('click.employee'); 
-    if (firstName || lastName){
-        var _employeeFirst = firstName || null;
-        var _employeeLast = lastName || null;
-        manager.addEmployee(_employeeFirst, _employeeLast, null);
-    } else {
-        $('#add-employee-bt').on('click.employee',function(event){
-            event.preventDefault();
-            var _employeeFirst = $('#employeeFirst').val();
-            var _employeeLast = $('#employeeLast').val();
-            _this.addEmployee(_employeeFirst, _employeeLast, null);
-        })
-    }
-
 }
 
 //manager class  
@@ -198,23 +180,18 @@ function Manager(managerFirst, managerLast, managerEducation){
     this.employees = [];
     this.addEmployee = addEmployee;
     this.removeEmployee = removeEmployee;
-    this.addEmployeeListener = addEmployeeListener;
-    this.removeEmployeeListener = removeEmployeeListener;
     this.updateEmployeeDisplay = updateEmployeeDisplay;
     this.init(managerFirst, managerLast, managerEducation);
 }
 
     function managerInit(managerFirst, managerLast, managerEducation){
         _this = this;
-        // $('#add-employee-bt').off('click.manager')
         var _employee = new Employee();
         _employee.firstName = managerFirst;
         _employee.lastName = managerLast;
         _employee.education = managerEducation;
         _employee.manager = "is manager";
         this.self = _employee;
-
-        // this.updateEmployeeDisplay(_employee, false);
         return this;
     }
 
@@ -228,7 +205,6 @@ function Manager(managerFirst, managerLast, managerEducation){
         this.employees.push(_employee)
 
         AddEmployeesToSelect2(this)
-
         this.updateEmployeeDisplay(_employee, false);
         return _employee;
     }
@@ -248,20 +224,6 @@ function Manager(managerFirst, managerLast, managerEducation){
         return _employeeToDel;
     }
 
-    function removeEmployeeListener(){
-        _this = this;
-        console.log('adding remove listener')
-        $('.remove-item-bt').off('click.employee');
-        $('.remove-item-bt').on('click.employee',function(event){
-            event.preventDefault();
-            console.log('remove called')
-            var _employeeId = $(this).attr('id');
-            console.log(_employeeId)
-            var employee = _this.removeEmployee(_employeeId);
-            // _this.updateEmployeeDisplay(employee, true)
-        })
-    }
-
     function updateEmployeeDisplay(employee, remove){
         _this = this;
         if (!remove){
@@ -279,6 +241,49 @@ function Manager(managerFirst, managerLast, managerEducation){
         } else {
             $('#'+employee._id).remove();
             $('option[data-custom-htmlid="'+employee._id+'"]').remove()
+
+
+            // /*
+            // AddEmployeesToSelect2(manager)//start here issues
+            var _manager = manager;
+            var addedEmployees = _manager.employees.map((item, index) => {
+                var _nameDisplay = item.firstName + ' ' + item.lastName;
+                var _item = {id:index, text:_nameDisplay, htmlId: item._id};
+                console.log(_item)
+                return _item;
+            })
+            // var arr = ConvertArraySelect2(addedEmployees)
+
+            setTimeout(function(){
+
+                var selected = $('.js-example-basic-multiple').find(':selected')
+                var notselected = $('.js-example-basic-multiple').find(':not(:selected)').remove();
+                
+                // .each(function(){
+                //     $(this).children().remove();
+                // })
+                console.log(selected)
+                console.log(notselected.length)
+                
+                
+                $('.js-example-basic-multiple').select2({
+                    data: addedEmployees,
+                    placeholder: 'Select your employees',
+                    closeOnSelect: false,
+                    templateSelection: function (data, container) {
+                        // Add custom attributes to the <option> tag for the selected option
+                        $(data.element).attr('data-custom-htmlId', data.htmlId);
+                        // console.log(data.element)
+                        // console.log(container)
+                        return data.text;
+                      }
+                    // disabled: false
+                })  
+            }, 1000)
+            // $('.js-example-basic-multiple').empty()
+
+            // */
+            
         }
     }
 
@@ -333,28 +338,19 @@ function Employee(){
 
     }
 
-    //restrict employee selections
-
-    // $('.select-group').select2({
-    //     placeholder: 'Select your employees2',
-    //     closeOnSelect: false,
-    //     disabled: false
-    // }) 
-
-
-
     function AddEmployeesToSelect2(_manager){
-
         var addedEmployees = _manager.employees.map((item, index) => {
             var _nameDisplay = item.firstName + ' ' + item.lastName;
             var _item = {id:index, text:_nameDisplay, htmlId: item._id};
             return _item;
         })
-        console.log(addedEmployees)
         // var arr = ConvertArraySelect2(addedEmployees)
-        $('.js-example-basic-multiple').each(function(){
-            $(this).empty()
-        })
+        // $('.js-example-basic-multiple').each(function(){
+        //     console.log($(this))
+        //     $(this).empty()
+        // })
+        // $('.js-example-basic-multiple').empty()
+
         $('.js-example-basic-multiple').select2({
             data: addedEmployees,
             placeholder: 'Select your employees',
@@ -362,15 +358,12 @@ function Employee(){
             templateSelection: function (data, container) {
                 // Add custom attributes to the <option> tag for the selected option
                 $(data.element).attr('data-custom-htmlId', data.htmlId);
-                console.log(data.element)
+                // console.log(data.element)
                 // console.log(container)
                 return data.text;
               }
             // disabled: false
         })  
-
-        // var lastEmployee = _manager.employees[manager.employees.length-1]
-        // var _item = {id:i, text:_nameDiplay};
 
 
     }   
