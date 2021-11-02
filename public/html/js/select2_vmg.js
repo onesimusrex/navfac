@@ -144,7 +144,7 @@ _manager.removeEmployee(_employee2._id);
 */
 
 
-function loadtraining(branch, category){
+function loadBranch(branch, category){
     console.log(data[category][branch].data)
     var arr = data[category][branch].data;
     $('#'+category+'List').empty()
@@ -166,11 +166,40 @@ function loadtraining(branch, category){
     
 }
 
-loadtraining("fms", "training")
-loadtraining("fms", "essentialtask")
-loadtraining("fms", "credential")
+function setBranch(branch){
+    emptySurveyOptions();
 
-$('.js-example-basic-multiple').select2() 
+    loadBranch(branch, "training")
+    loadBranch(branch, "essentialtask")
+    loadBranch(branch, "credential")
+    $('.js-example-basic-multiple').select2() 
+
+    if (true/*manager != null*/){
+        manager.employees = []
+        $('#employee-list').empty()
+    } else {
+        AddEmployeesToSelect2(manager);
+        $('#employee-list').empty()
+    }
+}
+
+function emptySurveyOptions(){
+    $('#trainingList').empty()
+    $('#credentialList').empty()
+    $('#essentialtaskList').empty()
+}
+
+
+
+$('#branch-selector').on('change', function(event){
+    event.preventDefault();
+    var selectBranch = $('#branch-selector option:selected').attr('value');
+    setBranch(selectBranch);
+})
+
+
+
+emptySurveyOptions();
 manager = null;
 ListenNewManager(); 
 
