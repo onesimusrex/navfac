@@ -95,7 +95,7 @@
 								</div>
 								<h5>Select your PWD location from the list below:</h5>
 								<div class="mb-3">
-									<select class="form-select form-select-lg" aria-label="Select PWD location">
+									<select id="pwd-selector" class="form-select form-select-lg" aria-label="Select PWD location">
 										<option selected>Select a location</option>
 										<option value="PWD ANDERSEN">PWD ANDERSEN</option>
 										<option value="PWD ANNAPOLIS">PWD ANNAPOLIS</option>
@@ -184,7 +184,7 @@
 								<h5>Is there a name or discipline of the ‘shop’ or staff you manage? If so please note
 									below:</h5>
 								<div>
-									<textarea class="form-control" rows="1"></textarea>
+									<textarea id="discipline-input" class="form-control" rows="1"></textarea>
 								</div>
 							</form>
 						</div>
@@ -215,6 +215,24 @@
 										</div>
 										
 									</form>
+									<ul class="list-group">
+										<li class="">
+											<!-- <div class="row"> -->
+												<!-- <div class="col-md"><strong>John Doe</strong></div> -->
+												<!-- <div class="col-md"> -->
+													<select class="form-select form-select-lg" aria-label="Select the highest education level the employee has completed">
+														<option selected>Select the highest education level the employee has completed</option>
+														<option value="None">None</option>
+														<option value="High School Diploma">High School Diploma</option>
+														<option value="Associates">Associates</option>
+														<option value="Bachelors">Bachelors</option>
+														<option value="Masters">Masters</option>
+														<option value="PhD">PhD</option>
+													</select>
+												<!-- </div> -->
+											<!-- </div> -->
+										</li>
+									</ul>
 									<div class="mt-5 d-grid gap-2 mb-3">
 										<button type="button" class="btn btn-outline-primary" id="add-employee-bt"><i class="fas fa-user-plus"></i> Add employee</button>
 									</div>
@@ -460,7 +478,7 @@
 					</div>
 				</section>
 
-				<section id="education-section" class="mt-5">
+				<!-- <section id="education-section" class="mt-5">
 					<header class="bg-transparent text-white border-bottom border-light-blue border-2 mb-3">
 						<h3 class="light-blue-heading">Education</h3>
 					</header>
@@ -568,7 +586,7 @@
 							</ul>
 						</div>
 					</div>
-				</section>
+				</section> -->
 
 				<div class="mt-5 d-flex justify-content-center mb-5">
 					<button type="button" class="btn btn-primary btn-lg" id="submit-bt">Submit</button>
