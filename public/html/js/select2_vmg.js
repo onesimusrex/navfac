@@ -145,7 +145,7 @@ _manager.removeEmployee(_employee2._id);
 
 
 function loadBranch(branch, category){
-    console.log(data[category][branch].data)
+    // console.log(data[category][branch].data)
     var arr = data[category][branch].data;
     $('#'+category+'List').empty()
     arr.map(function(item, i){
@@ -174,12 +174,15 @@ function setBranch(branch){
     loadBranch(branch, "credential")
     $('.js-example-basic-multiple').select2() 
 
-    if (true/*manager != null*/){
+    $('#employee-list').empty()
+    if (manager != null){
         manager.employees = []
-        $('#employee-list').empty()
+        
     } else {
-        AddEmployeesToSelect2(manager);
-        $('#employee-list').empty()
+        if (manager != null){
+            AddEmployeesToSelect2(manager);
+            $('#employee-list').empty()
+        }
     }
 }
 
@@ -196,6 +199,34 @@ $('#branch-selector').on('change', function(event){
     var selectBranch = $('#branch-selector option:selected').attr('value');
     setBranch(selectBranch);
 })
+
+$('#pwd-selector').on('change', function(event){
+    event.preventDefault();
+    setPwd(manager);
+})
+
+function setPwd(_manager){
+    var pwd = $('#pwd-selector option:selected').attr('value');
+    if (_manager != null){
+        _manager.pwd = pwd;
+    } else {
+        this.pwd = pwd;
+    }
+}
+
+$('#discipline-input').on('focusout', function(event){
+    event.preventDefault();
+    setDiscipline(manager)
+})
+
+function setDiscipline(_manager){
+    var _discipline = $('#discipline-input').val();
+    if (_manager != null){
+        _manager.discipline = _discipline;
+    } else {
+        this.discipline = _discipline;
+    }
+}
 
 
 
@@ -231,6 +262,10 @@ function Manager(managerFirst, managerLast, managerEducation){
     this.init = managerInit; 
     this.self;
     this.employees = [];
+    this.pwd = "null";
+    this.discipline = "null"
+    this.setPwd = setPwd;
+    this.setDiscipline = setDiscipline;
     this.fields = data;
     this.addEmployee = addEmployee;
     this.removeEmployee = removeEmployee;
@@ -245,6 +280,8 @@ function Manager(managerFirst, managerLast, managerEducation){
         _employee.lastName = managerLast;
         _employee.education = managerEducation;
         _employee.manager = "is manager";
+        this.setPwd();
+        this.setDiscipline();
         this.self = _employee;
         return this;
     }
@@ -398,12 +435,7 @@ function Employee(){
             var _item = {id:index, text:_nameDisplay, htmlId: item._id};
             return _item;
         })
-        // var arr = ConvertArraySelect2(addedEmployees)
-        // $('.js-example-basic-multiple').each(function(){
-        //     console.log($(this))
-        //     $(this).empty()
-        // })
-        // $('.js-example-basic-multiple').empty()
+
 
         $('.js-example-basic-multiple').select2({
             data: addedEmployees,
@@ -440,7 +472,6 @@ function Employee(){
     $('#managerFirst').focus();
 
     $("#employeeLast, #managerLast, #employeeFirst").keypress(function( event ) {
-        console.log('press')
         if ( event.which == 13 ) {
            event.preventDefault();
            if ($(this).attr('id') == "employeeLast"){
@@ -459,12 +490,6 @@ function Employee(){
 
         }   
       });
-
-
-
-
-
-
 
 });
 
