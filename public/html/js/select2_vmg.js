@@ -144,7 +144,31 @@ _manager.removeEmployee(_employee2._id);
 */
 
 
+function loadtraining(branch, category){
+    console.log(data[category][branch].data)
+    var arr = data[category][branch].data;
+    $('#'+category+'List').empty()
+    arr.map(function(item, i){
+        var htmlstring = `<li class="list-group-item">
+        <div class="row">
+            <div class="col-md"><strong>`+item+`</strong></div>
+            <div class="col-md">
+                <select class="js-example-basic-multiple js-states form-control select-group" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
 
+                </select>
+            </div>
+        </div>
+    </li>`
+
+        
+        $('#'+category+'List').append(htmlstring)
+    })
+    
+}
+
+loadtraining("fms", "training")
+loadtraining("fms", "essentialtask")
+loadtraining("fms", "credential")
 
 $('.js-example-basic-multiple').select2() 
 manager = null;
@@ -178,6 +202,7 @@ function Manager(managerFirst, managerLast, managerEducation){
     this.init = managerInit; 
     this.self;
     this.employees = [];
+    this.fields = data;
     this.addEmployee = addEmployee;
     this.removeEmployee = removeEmployee;
     this.updateEmployeeDisplay = updateEmployeeDisplay;
@@ -276,7 +301,7 @@ function Manager(managerFirst, managerLast, managerEducation){
                         // console.log(data.element)
                         // console.log(container)
                         return data.text;
-                      }
+                      },
                     // disabled: false
                 })  
             }, 1000)
@@ -408,7 +433,13 @@ function Employee(){
 
 
 
+
+
+
+
 });
+
+
 
 /*
 Enter an employee name and click "add employee" for each employee you manage.
