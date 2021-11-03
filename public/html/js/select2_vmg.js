@@ -1,37 +1,4 @@
-// json = [
-//     {
-//         manager: "Manager1",
-//         employees : 
-//             [
-//                 "Liam",
-//                 "Olivia",
-//                 "Noah",
-//                 "Emma",
-//                 "Oliver",
-//                 "Ava",
-//                 "William",
-//                 "Sophia",
-//                 "Elijah"
-//             ]
-//     },
-//     {
-//         manager: "Manager2",
-//         employees : 
-//             [
-//                 "Isabella",
-//                 "James",
-//                 "Charlotte",
-//                 "Benjamin",
-//                 "Amelia",
-//                 "Lucas",
-//                 "Mia",
-//                 "Mason",
-//                 "Harper",
-//                 "Ethan",
-//                 "Evelyn"
-//             ]
-//     }
-// ]
+
 
 $(document).ready(function() {
 //     $('.js-example-basic-multiple').select2()  
@@ -151,7 +118,7 @@ function loadBranch(branch, category){
     arr.map(function(item, i){
         var htmlstring = `<li class="list-group-item">
         <div class="row">
-            <div class="col-md"><strong>`+item+`</strong></div>
+            <div id="activity-class" class="col-md"><strong>`+item+`</strong></div>
             <div class="col-md">
                 <select class="js-example-basic-multiple js-states form-control select-group" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
 
@@ -169,10 +136,71 @@ function loadBranch(branch, category){
 function setBranch(branch){
     emptySurveyOptions();
 
+    $('#employee-list-card').show()
+    $('#essential-tasks-card').show()
+    $('#training-card').show()
+    $('#credentials-card').show()
+
     loadBranch(branch, "training")
     loadBranch(branch, "essentialtask")
     loadBranch(branch, "credential")
     $('.js-example-basic-multiple').select2() 
+
+    $('.js-example-basic-multiple').on('select2:select', function (e) {
+        var data = e.params.data;
+        // console.log(data);
+        var _activity = $(data.element.parentElement).parent().siblings('#activity-class')
+        // console.log(_activity.text());
+
+        var _activityText = _activity.text();
+        var employeeId = data.htmlId;
+        var branchType = _activity.parents('ul').attr('id')/*.slice(0, -4)*/;
+        if (branchType == 'essentialtaskList'){
+            branchType = 'tasks'
+        } else if (branchType == 'trainingList'){
+            branchType = 'trainings';
+        } else if (branchType == 'credentialList'){
+            branchType = 'credentials';
+        }
+
+        // console.log(employeeId);
+        
+        var _employee;
+        manager.employees.map(function(item, index){
+            if(item._id == employeeId){
+                _employee = item;
+                // _employee[branchType].push(_activityText)
+                addActivityNew(_employee[branchType], _activityText)
+            }
+        })
+    });
+
+    $('.js-example-basic-multiple').on('select2:unselect', function (e) {
+        var data = e.params.data;
+        console.log(data);
+        var _activity = $(data.element.parentElement).parent().siblings('#activity-class')
+        var _activityText = _activity.text();
+        var employeeId = data.htmlId;
+        var branchType = _activity.parents('ul').attr('id')/*.slice(0, -4)*/;
+        if (branchType == 'essentialtaskList'){
+            branchType = 'tasks'
+        } else if (branchType == 'trainingList'){
+            branchType = 'trainings';
+        } else if (branchType == 'credentialList'){
+            branchType = 'credentials';
+        }
+
+        console.log(employeeId);
+
+        var _employee;
+        manager.employees.map(function(item, index){
+            if(item._id == employeeId){
+                _employee = item;
+                // _employee[branchType].push(_activityText)
+                removeActivityNew(_employee[branchType], _activityText)
+            }
+        })
+    })
 
     $('#employee-list').empty()
     if (manager != null){
@@ -186,13 +214,36 @@ function setBranch(branch){
     }
 }
 
+function addActivityNew (arr, activity){
+    flag = true
+
+    arr.map((item)=>{
+        if (item == activity){
+            flag = false
+        }
+    })
+
+    if (flag){
+        arr.push(activity);
+        return flag
+    } else
+    return flag
+}
+
+function removeActivityNew (arr, activity){
+    arr.map((item, i)=>{
+        if (item == activity){
+            arr.splice(i, 1)
+        }
+    })
+
+}
+
 function emptySurveyOptions(){
     $('#trainingList').empty()
     $('#credentialList').empty()
     $('#essentialtaskList').empty()
 }
-
-
 
 $('#branch-selector').on('change', function(event){
     event.preventDefault();
@@ -228,9 +279,26 @@ function setDiscipline(_manager){
     }
 }
 
+var eduVar;
+$('#education-selector').on('change', function(event){
+    event.preventDefault();
+    // setEducation(manager);
+    console.log('education selection changed')
+    // eduVar = $('#education-selector').val();
+})
+
+$('#education-selector').on('select2:select', function (e) {
+    var data = e.params.data;
+    console.log(data);
+});
+
 
 
 emptySurveyOptions();
+$('#employee-list-card').hide()
+$('#essential-tasks-card').hide()
+$('#training-card').hide()
+$('#credentials-card').hide()
 manager = null;
 ListenNewManager(); 
 
@@ -275,7 +343,7 @@ function Manager(managerFirst, managerLast, managerEducation){
 
     function managerInit(managerFirst, managerLast, managerEducation){
         _this = this;
-        var _employee = new Employee();
+        var _employee = new Employee(true);
         _employee.firstName = managerFirst;
         _employee.lastName = managerLast;
         _employee.education = managerEducation;
@@ -288,10 +356,13 @@ function Manager(managerFirst, managerLast, managerEducation){
 
     function addEmployee(emplFirst, emplLast, emplEducation){
         console.log('added employee')
-        var _employee = new Employee();
+        var _employee = new Employee(false);
         _employee.firstName = emplFirst;
         _employee.lastName = emplLast;
-        _employee.education = emplEducation;
+        if (manager.employees.length > 0){
+            _employee.education = $('#education-selector').val();
+            $('#education-selector').val('')
+        } else _employee.education = "manager/ none"
         _employee.manager = this.self;
         this.employees.push(_employee)
 
@@ -319,7 +390,7 @@ function Manager(managerFirst, managerLast, managerEducation){
         _this = this;
         if (!remove){
             var li = document.createElement('li');
-            $(li).addClass('list-group-item').text(employee.firstName + " " + employee.lastName).append('<button id="'+ employee._id +'" type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i>remove</button>')/*.attr('id', employee._id)*/
+            $(li).addClass('list-group-item').text(employee.firstName + " " + employee.lastName).append('<button id="'+ employee._id +'" type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i> remove</button>')/*.attr('id', employee._id)*/
             $('#employee-list').append(li)
             $('#'+ employee._id ).on('click.test', function(event){
                 event.preventDefault();
@@ -381,7 +452,7 @@ function Manager(managerFirst, managerLast, managerEducation){
 
 
 //employee class 
-function Employee(){
+function Employee(isManager){
     this.init = employeeInit; //constructor
     this._id;
     this.firstName;
@@ -394,11 +465,26 @@ function Employee(){
     this.generateId = generateId;
     this.addActivity = addActivity;
     this.removeActivity = removeActivity;
-    this.init();
+    // this.setEduction = setEducation;
+    this.init(isManager);
 }
 
-    function employeeInit(){
+    function employeeInit(isManager){
         this._id = this.generateId(7);
+        console.log('is manager: ' + isManager)
+        if (!isManager){
+            this.education = eduVar/*setEducation()*/
+        } else {
+            this.eductation = eduVar
+        }
+    }
+
+    function setEducation(){
+        var _education = $('#education-selector').val();
+        // $('#eduction-selector').val('none');
+        console.log('boom3')
+        // return _education
+        return _education
     }
 
     //utility function to add unique id
