@@ -67,11 +67,7 @@
 	<main>
 		<div class="container">
 			<div class="text-white mt-4 mb-4">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>In response to “STRATEGIC DESIGN 2.0 Initiative "Develop a vehicle to assess PWD readiness," NAVFAC commissioned the development of a system that informs strategic decisions to enhance organizational readiness. This survey is the first data-capture step in an analysis that will identify any readiness gaps within the organization. The survey below is used to capture the required information ONLY for the production division staff. Due to the logistical complexity of deploying an online survey to all production division staff, NAVFAC leadership has adopted a streamlined approach that requires all staff managers to populate the required information on behalf of the staff they manage. The survey is designed to capture 1) who reports to you, 2) the essential tasks they engage in, 3) the trainings they have completed, 4) the credentials they have acquired, and 5) their highest education level. Please note that not all employees are required to have all training and credentials listed. Once the survey information is populated, please click the submit button. </p>
 			</div>
 
 			<div>
@@ -95,7 +91,7 @@
 								</div>
 								<h5>Select your PWD location from the list below:</h5>
 								<div class="mb-3">
-									<select class="form-select form-select-lg" aria-label="Select PWD location">
+									<select id="pwd-selector" class="form-select form-select-lg" aria-label="Select PWD location">
 										<option selected>Select a location</option>
 										<option value="PWD ANDERSEN">PWD ANDERSEN</option>
 										<option value="PWD ANNAPOLIS">PWD ANNAPOLIS</option>
@@ -176,15 +172,15 @@
 								<div class="mb-3">
 									<select class="form-select form-select-lg" aria-label="Select a branch" id="branch-selector">
 										<option selected>Select a branch</option>
-										<option value="Facilities Management and Sustainment">Facilities Management &amp; Sustainment (FM&amp;S)</option>
-										<option value="Transportation">Transportation</option>
-										<option value="Utilities Management">Utilities Management (UM)</option>
+										<option value="fms">Facilities Management &amp; Sustainment (FM&amp;S)</option>
+										<option value="transportation">Transportation</option>
+										<option value="um">Utilities Management (UM)</option>
 									</select>
 								</div>
 								<h5>Is there a name or discipline of the ‘shop’ or staff you manage? If so please note
 									below:</h5>
 								<div>
-									<textarea class="form-control" rows="1"></textarea>
+									<textarea id="discipline-input" class="form-control" rows="1"></textarea>
 								</div>
 							</form>
 						</div>
@@ -201,22 +197,36 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md">
+									<h5 style="margin-bottom: 15px;">Enter the first and last name of an employee that you manage and click the “Add Employee” button. Repeat for each employee you manage. The result should be a list on the right for all employees that report to you. This list will serve as the available staff options in the sections that follow.</h5>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md">
 									<form id="employee-list-input" action="" method="post" name="employee-info-form-1" data-employee-id="1">
 										<h5>Employee Information</h5>
 										<div class="row mb-3">
 											<div class="col-sm">
 												<input id="employeeFirst" class="form-control form-control-lg" type="text" placeholder="First"
-													aria-label="First Name">
+													aria-label="First Name" required>
 											</div>
 											<div class="col-sm">
 												<input id="employeeLast" class="form-control form-control-lg" type="text" placeholder="Last"
-													aria-label="First Name">
+													aria-label="First Name" required>
 											</div>
 										</div>
 										
 									</form>
+									<h5>For each staff member you manage, please select their highest level of education.</h5>
+										<select id="education-selector" class="form-select form-select-lg" aria-label="Select the highest education level the employee has completed">
+											<option value="None">None</option>
+											<option value="high school diploma">High School Diploma</option>
+											<option value="associates">Associates</option>
+											<option value="bachelors">Bachelors</option>
+											<option value="masters">Masters</option>
+											<option value="phd">PhD</option>
+										</select>
 									<div class="mt-5 d-grid gap-2 mb-3">
-										<button type="button" class="btn btn-outline-primary" id="add-employee-bt"><i class="fas fa-user-plus"></i> Add employee</button>
+										<button type="button" class="btn btn-outline-primary" id="add-employee-bt"><i class="fas fa-user-plus"></i> Add Employee</button>
 									</div>
 								</div>
 								<div class="col-md">
@@ -241,14 +251,18 @@
 					</header>
 
 					<div class="card" id="essential-tasks-card">
-											
 						<div class="card-body">
-							<ul class="list-group">
+							<div class="row">
+								<div class="col-md">
+									<h5 class="light-blue-heading" style="margin-bottom: 15px;">For the each of the essential tasks listed below, please add the employee names that engage in each task. Multiple staff can be selected. If no employees engage in that task, please leave it blank.</h5>
+								</div>
+							</div>
+							<ul class="list-group" id="essentialtaskList">
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-md"><strong>Facilities management: Manage customer work request</strong></div>
 										<div class="col-md">
-											<select class="js-example-data-array form-control select-group" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
+											<select class="js-example-basic-multiple js-states" multiple="multiple" data-placeholder="Add Employees" data-width="100%">
 
 											</select>
 
@@ -320,7 +334,13 @@
 					<div class="card" id="training-card">
 											
 						<div class="card-body">
-							<ul class="list-group">
+
+							<div class="row">
+								<div class="col-md">
+									<h5 style="margin-bottom: 15px;">For each of the trainings listed below, please add all employees who have completed that training. Multiple staff can be selected. If no employees have completed that training, please leave it blank. </h5>
+								</div>
+							</div>
+							<ul class="list-group" id="trainingList">
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-md"><strong>All the CBMM Modules Modules 1-9 (PDT)</strong></div>
@@ -394,7 +414,13 @@
 					<div class="card" id="credentials-card">
 											
 						<div class="card-body">
-							<ul class="list-group">
+
+							<div class="row">
+								<div class="col-md">
+									<h5 class="light-blue-heading" style="margin-bottom: 15px;">For each of the credential types listed below, please add all employees who have acquired that credential. Multiple staff can be selected. If no employees have that specific credential, please leave it blank.</h5>
+								</div>
+							</div>
+							<ul class="list-group" id="credentialList">
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-md"><strong>CPR Certification</strong></div>
@@ -460,7 +486,7 @@
 					</div>
 				</section>
 
-				<section id="education-section" class="mt-5">
+				<!-- <section id="education-section" class="mt-5">
 					<header class="bg-transparent text-white border-bottom border-light-blue border-2 mb-3">
 						<h3 class="light-blue-heading">Education</h3>
 					</header>
@@ -568,10 +594,10 @@
 							</ul>
 						</div>
 					</div>
-				</section>
+				</section> -->
 
 				<div class="mt-5 d-flex justify-content-center mb-5">
-					<button type="button" class="btn btn-primary btn-lg" id="submit-bt">Submit</button>
+					<button id="submit-button" type="button" class="btn btn-primary btn-lg" id="submit-bt">Submit</button>
 				</div>
 
 			</div>
@@ -591,14 +617,7 @@
 	
 
 
-
-	<script>
-		$(document).ready(function () {
-			$('.js-example-basic-multiple').select2();
-		});
-	</script>
-
-	<script src="js/appmanager_v1.js"></script>
+	<script src="js/sheetsapiclient.js"></script>
 
 </body>
 
