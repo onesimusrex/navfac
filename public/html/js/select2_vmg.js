@@ -1,118 +1,6 @@
-
-
 $(document).ready(function() {
-//     $('.js-example-basic-multiple').select2()  
-
-//     $('#employee-select').select2({
-//         placeholder: 'Select your employees',
-//         closeOnSelect: false,
-//         disabled: true
-//     }) 
-
-//     $('#manager-select').select2({
-//         data: ListManagers(json),
-//         placeholder: 'Select your name',
-//     })  
-
-//     $('#manager-select').val(null).trigger('change');
-
-//     $('#manager-select').on('select2:select', function (e) {
-//         var data = e.params.data;
-//         $('#employee-select').empty().trigger('change');
-//         $('#employee-select').select2({
-//             data: GetEmployees(json, data.text),
-//             placeholder: 'Select your employees',
-//             closeOnSelect: false,
-//             disabled: false
-//         }) 
-//     });
-
-//     $('#employee-select').on('select2:close', function (e) {
-//         // var data = e.params.data;
-//         var tempArr = []
-//         $('#employee-select').find(':selected').each(function(i){
-//             console.log($(this).text())
-//             tempArr.push ($(this).text())
-//         })
-
-//         data = tempArr.map(function (item, i) {
-//             item.id = i;
-//             _item = {id:i, text:item}
-//             return _item;
-//         }); 
-//         $('.tablerow').select2({
-//             data: GetEmployees(json, data),
-//             placeholder: 'Select your employees',
-//             closeOnSelect: false,
-//             disabled: false
-//         }) 
-//     });
-
-
-
-
-
-
-// // ListManagers(json);
-// // GetEmployees(json, "Manager1")
-
-// function AddSelect2(selector){
-//     console.log(selector)
-//     $(selector).select2({
-//         data: GetEmployees(json, "Manager1")
-//     });
-// }
-
-// function ListManagers(array, index){
-//     data = array.map(function (item, i){
-//         item.id = i;
-//         _item = {id:i, text:item.manager}
-//         return _item;
-//     })
-//     // console.log(data)
-//     _result = {
-//         'results':data
-//     }
-//     return data 
-    
-// }
-
-// function GetEmployees (array, manager){
-//     array.forEach((element, index)=> {
-//         if (manager == element.manager){
-//             data = element.employees.map(function (item, i) {
-//                 item.id = i;
-//                 _item = {id:i, text:item}
-//                 return _item;
-//             }); 
-//             _result = {
-//                 'results':data
-//             }
-             
-//         }
-//     });
-//     return /*_result*/ data 
-// }
-
-/*
-
-var _manager = new Manager('mister', 'manager', 'hs diploma');
-var _employee1 = _manager.addEmployee('monty', 'wilson', 'MFA');
-console.log("unique id: " + _employee1._id)
-var _employee2 = _manager.addEmployee('hollie', 'schmidt', 'BFA');
-console.log("unique id: " + _employee2._id)
-var _employee3 = _manager.addEmployee('intern', 'wendy', 'BA');
-console.log("unique id: " + _employee3._id)
-console.log(_manager)
-_manager.removeEmployee(_employee2._id);
-
-<li class="list-group-item">John Doe <button type="button" class="btn btn-primary btn-sm float-end remove-item-bt"><i class="fas fa-user-times"></i> remove</button></li>
-
-*/
-
 
 function loadBranch(branch, category){
-    // console.log(data[category][branch].data)
     var arr = data[category][branch].data;
     $('#'+category+'List').empty()
     arr.map(function(item, i){
@@ -126,7 +14,6 @@ function loadBranch(branch, category){
             </div>
         </div>
     </li>`
-
         
         $('#'+category+'List').append(htmlstring)
     })
@@ -360,9 +247,9 @@ function Manager(managerFirst, managerLast, managerEducation){
         _employee.firstName = emplFirst;
         _employee.lastName = emplLast;
         if (manager.employees.length > 0){
-            _employee.education = $('#education-selector').val();
+            _employee.education = $('#education-selector').val() || "none selected";
             $('#education-selector').val('')
-        } else _employee.education = "manager/ none"
+        } else _employee.education = $('#education-selector-manager').val() || "none selected"
         _employee.manager = this.self;
         this.employees.push(_employee)
 

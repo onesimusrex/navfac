@@ -89,6 +89,18 @@
 											aria-label="First Name">
 									</div>
 								</div>
+								<div class="mb-3">
+									<h5>Please select your highest level of education.</h5>
+									<select id="education-selector-manager" class="form-select form-select-lg" aria-label="Select the highest education level the employee has completed">
+										<option value="None">None</option>
+										<option value="high school diploma">High School Diploma</option>
+										<option value="associates">Associates</option>
+										<option value="bachelors">Bachelors</option>
+										<option value="masters">Masters</option>
+										<option value="phd">PhD</option>
+									</select>
+								</div>
+								
 								<h5>Select your PWD location from the list below:</h5>
 								<div class="mb-3">
 									<select id="pwd-selector" class="form-select form-select-lg" aria-label="Select PWD location">
@@ -195,11 +207,11 @@
 					<div class="card" id="employee-list-card">
 						
 						<div class="card-body">
-							<div class="row">
-								<div class="col-md">
-									<h5 style="margin-bottom: 15px;">Enter the first and last name of an employee that you manage and click the “Add Employee” button. Repeat for each employee you manage. The result should be a list on the right for all employees that report to you. This list will serve as the available staff options in the sections that follow.</h5>
+							<!-- <div class="row"> -->
+								<div class="mb-3">
+									<h5>Enter the first and last name of an employee that you manage and click the “Add Employee” button. Repeat for each employee you manage. The result should be a list on the right for all employees that report to you. This list will serve as the available staff options in the sections that follow.</h5>
 								</div>
-							</div>
+							<!-- </div> -->
 							<div class="row">
 								<div class="col-md">
 									<form id="employee-list-input" action="" method="post" name="employee-info-form-1" data-employee-id="1">
@@ -252,11 +264,11 @@
 
 					<div class="card" id="essential-tasks-card">
 						<div class="card-body">
-							<div class="row">
-								<div class="col-md">
-									<h5 class="light-blue-heading" style="margin-bottom: 15px;">For the each of the essential tasks listed below, please add the employee names that engage in each task. Multiple staff can be selected. If no employees engage in that task, please leave it blank.</h5>
+							<!-- <div class="row"> -->
+								<div class="mb-3">
+									<h5 class="light-blue-heading" >For the each of the essential tasks listed below, please add the employee names that engage in each task. Multiple staff can be selected. If no employees engage in that task, please leave it blank.</h5>
 								</div>
-							</div>
+							<!-- </div> -->
 							<ul class="list-group" id="essentialtaskList">
 								<li class="list-group-item">
 									<div class="row">
@@ -335,11 +347,11 @@
 											
 						<div class="card-body">
 
-							<div class="row">
-								<div class="col-md">
-									<h5 style="margin-bottom: 15px;">For each of the trainings listed below, please add all employees who have completed that training. Multiple staff can be selected. If no employees have completed that training, please leave it blank. </h5>
+							<!-- <div class="row"> -->
+								<div class="mb-3">
+									<h5>For each of the trainings listed below, please add all employees who have completed that training. Multiple staff can be selected. If no employees have completed that training, please leave it blank. </h5>
 								</div>
-							</div>
+							<!-- </div> -->
 							<ul class="list-group" id="trainingList">
 								<li class="list-group-item">
 									<div class="row">
@@ -415,11 +427,11 @@
 											
 						<div class="card-body">
 
-							<div class="row">
-								<div class="col-md">
-									<h5 class="light-blue-heading" style="margin-bottom: 15px;">For each of the credential types listed below, please add all employees who have acquired that credential. Multiple staff can be selected. If no employees have that specific credential, please leave it blank.</h5>
+							<!-- <div class="row"> -->
+								<div class="mb-3">
+									<h5 class="light-blue-heading" >For each of the credential types listed below, please add all employees who have acquired that credential. Multiple staff can be selected. If no employees have that specific credential, please leave it blank.</h5>
 								</div>
-							</div>
+							<!-- </div> -->
 							<ul class="list-group" id="credentialList">
 								<li class="list-group-item">
 									<div class="row">
