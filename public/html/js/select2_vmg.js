@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+$('#submit-button').prop( "disabled", true );
+
 function loadBranch(branch, category){
     var arr = data[category][branch].data;
     $('#'+category+'List').empty()
@@ -255,6 +257,7 @@ function Manager(managerFirst, managerLast, managerEducation){
 
         AddEmployeesToSelect2(this)
         this.updateEmployeeDisplay(_employee, false);
+        $('#submit-button').prop( "disabled", false );
         return _employee;
     }
 
