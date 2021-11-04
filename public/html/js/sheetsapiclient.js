@@ -69,9 +69,18 @@ function signin (_data){
     apiCall(_data, '/api/sheets')
 }
 
+var myModal = new bootstrap.Modal(document.getElementById('submitSurveyModal'), {
+    keyboard: false
+})
+
 $('#submit-button').on("click", (event)=>{
     event.preventDefault();
-    console.log('submit button')
+
+    myModal.show()
+})
+
+$('#confirm-submit-button').click((event)=>{
+    event.preventDefault()
     sendData(manager)
 })
 
