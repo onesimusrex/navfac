@@ -85,46 +85,56 @@ $('#confirm-submit-button').click((event)=>{
 })
 
 function sendData(_manager){
-    pushDatatoEmpl(_manager, 'tasks', _manager.employees.length, 0);
-    pushDatatoEmpl(_manager, 'trainings', _manager.employees.length, 0);
-    pushDatatoEmpl(_manager, 'credentials', _manager.employees.length, 0);
-    pushDatatoEmpl(_manager, 'education', _manager.employees.length, 0);
+    sheetCalls = ['tasks', 'trainings', 'credentials', 'education'];
+    pushDatatoEmpl(_manager, sheetCalls[0], _manager.employees.length, 0, 0, 4);
+    // pushDatatoEmpl(_manager, 'trainings', _manager.employees.length, 0);
+    // pushDatatoEmpl(_manager, 'credentials', _manager.employees.length, 0);
+    // pushDatatoEmpl(_manager, 'education', _manager.employees.length, 0);
 }
+ccc = 0
+function pushDatatoEmpl(_manager, _sheet, _emplLength, _count, sheetcount, sheetsLength){  
+    var timer = 300;
+    // console.log(ccc, _sheet, _emplLength, _count, sheetcount, sheetsLength)
+    if ( sheetcount < sheetsLength ) {
+        if (_count < _emplLength){ 
+        // _manager.employees.map((item, i) => {
+            var item = _manager.employees[_count]
+            _data = {
+                _type: null,
+                arr:[],
+                validFlag: true,
+                sheet: _sheet,
+                googlesheetid: googlesheetid,
+                emailSubject: emailSubject,
+                emailSender: emailSender
+            }; 
 
-function pushDatatoEmpl(_manager, _sheet, _emplLength, _count){   
-    if (_count < _emplLength){ 
-    // _manager.employees.map((item, i) => {
-        var item = _manager.employees[_count]
-        _data = {
-            _type: null,
-            arr:[],
-            validFlag: true,
-            sheet: _sheet,
-            googlesheetid: googlesheetid,
-            emailSubject: emailSubject,
-            emailSender: emailSender
-        }; 
+            // _data.arr.push([item._id, item._id]);
 
-        // _data.arr.push([item._id, item._id]);
+            _data.arr.push([item._id, item.firstName]);
+            _data.arr.push([item._id, item.lastName]);
+            _data.arr.push([item._id, item.manager.lastName + ', ' + item.manager.firstName]);
+            _data.arr.push([item._id, _manager.pwd]);
+            _data.arr.push([item._id, _manager.discipline]);
+            if (_sheet != 'education'){
+                _data.arr.push([item._id, JSON.stringify(item[_sheet])]);
+            } else {
+                _data.arr.push([item._id, item.education]);
+            }
 
-        _data.arr.push([item._id, item.firstName]);
-        _data.arr.push([item._id, item.lastName]);
-        _data.arr.push([item._id, item.manager.lastName + ', ' + item.manager.firstName]);
-        _data.arr.push([item._id, _manager.pwd]);
-        _data.arr.push([item._id, _manager.discipline]);
-        if (_sheet != 'education'){
-            _data.arr.push([item._id, JSON.stringify(item[_sheet])]);
-        } else {
-            _data.arr.push([item._id, item.education]);
-        }
-
- 
-        apiCall(_data, '/api/sheets')
-    // })
     
+            apiCall(_data, '/api/sheets')
+        // })
+        
+            setTimeout(()=>{
+                pushDatatoEmpl(_manager, _sheet, _emplLength, ++_count, sheetcount, sheetsLength)
+            }, timer)
+        }
+    } else {
         setTimeout(()=>{
-            pushDatatoEmpl(_manager, _sheet, _emplLength, ++_count)
-        }, 300)
+            ++sheetcount
+            pushDatatoEmpl(_manager, sheetCalls[sheetcount], _emplLength, 0, sheetcount, sheetsLength)
+        }, timer)
     }
     return
 }
@@ -210,7 +220,7 @@ $('#signInForm, #commentForm, #sign-in-form').submit(function(event){
 
 //send to api
 function apiCall(user, endpoint){
-    // console.log(user)
+    console.log(user)
     _user = user;
     user = {data: JSON.stringify(user)};
     $.post('https://txdotvirtualhearing.herokuapp.com/i35Vph'+endpoint, user, function(data, status){
