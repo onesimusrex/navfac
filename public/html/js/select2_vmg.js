@@ -471,10 +471,5 @@ function Employee(isManager){
 
 
 
-/*
-Enter an employee name and click "add employee" for each employee you manage.
-
-Add the names of the employees who engage in each of the essential tasks listed below. Multiple employees can be selected. Leave blank if no staff participate in the task.
-*/
 
 
