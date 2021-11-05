@@ -84,17 +84,21 @@ $('#confirm-submit-button').click((event)=>{
     sendData(manager)
 })
 
+$('#spinner').hide();
 function sendData(_manager){
     sheetCalls = ['tasks', 'trainings', 'credentials', 'education'];
     pushDatatoEmpl(_manager, sheetCalls[0], _manager.employees.length, 0, 0, 4);
+    $('#spinner').show();
+    $('#confirm-submit-button').text('Sending...')
+    $('#confirm-submit-button').prop( "disabled", true );
     // pushDatatoEmpl(_manager, 'trainings', _manager.employees.length, 0);
     // pushDatatoEmpl(_manager, 'credentials', _manager.employees.length, 0);
     // pushDatatoEmpl(_manager, 'education', _manager.employees.length, 0);
 }
 ccc = 0
 function pushDatatoEmpl(_manager, _sheet, _emplLength, _count, sheetcount, sheetsLength){  
-    var timer = 300;
-    // console.log(ccc, _sheet, _emplLength, _count, sheetcount, sheetsLength)
+    var timer = 600;
+    console.log(ccc++, _sheet, _emplLength, _count, sheetcount, sheetsLength)
     if ( sheetcount < sheetsLength ) {
         if (_count < _emplLength){ 
         // _manager.employees.map((item, i) => {
@@ -129,13 +133,18 @@ function pushDatatoEmpl(_manager, _sheet, _emplLength, _count, sheetcount, sheet
             setTimeout(()=>{
                 pushDatatoEmpl(_manager, _sheet, _emplLength, ++_count, sheetcount, sheetsLength)
             }, timer)
+        } else {
+            setTimeout(()=>{
+                ++sheetcount
+                pushDatatoEmpl(_manager, sheetCalls[sheetcount], _emplLength, 0, sheetcount, sheetsLength)
+            }, timer)
         }
     } else {
-        setTimeout(()=>{
-            ++sheetcount
-            pushDatatoEmpl(_manager, sheetCalls[sheetcount], _emplLength, 0, sheetcount, sheetsLength)
-        }, timer)
+        $('#spinner').hide();
+        $('#confirm-submit-button').text('Done')
+        // $('#confirm-submit-button').prop( "disabled", true );
     }
+
     return
 }
 
